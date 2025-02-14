@@ -39,16 +39,15 @@
         tools:layout="@layout/fragment_shoe_list" >
         <action
             android:id="@+id/action_shoeList_to_detailFragment2"
-            app:destination="@id/detailFragment2">
-
-            <argument
-                android:name="shoe"
-                app:argType="com.udacity.shoestore.models.Shoe" />
-        </action>
+            app:destination="@id/detailFragment2"/>
     </fragment>
     <fragment
         android:id="@+id/detailFragment2"
         android:name="com.udacity.shoestore.shoeList.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+    <argument
+        android:name="shoe"
+        app:argType="com.udacity.shoestore.models.Shoe" />
+    </fragment>
 </navigation>
