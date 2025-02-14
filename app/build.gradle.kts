@@ -4,10 +4,6 @@ plugins {
     kotlin("plugin.serialization") version "2.0.21"
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
-//    id "kotlin-android"
-//    id "kotlin-kapt"
-//    id "androidx.navigation.safeargs"
-//    id "kotlin-parcelize"
 }
 
 android {
@@ -17,7 +13,7 @@ android {
     defaultConfig {
         applicationId = "com.udacity.shoestore"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -57,13 +53,10 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.coil)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.kotlinx.serialization.json)
-
-    implementation(libs.coil)
-    //implementation("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3")
-
-
 }

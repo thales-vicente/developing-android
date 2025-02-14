@@ -1,5 +1,5 @@
 [versions]
-agp = "8.8.0"
+agp = "8.8.1"
 coil = "2.7.0"
 constraintlayout = "2.2.0"
 kotlin = "2.0.21"
@@ -11,7 +11,7 @@ appcompat = "1.7.0"
 kotlinxSerializationJson = "1.7.3"
 material = "1.12.0"
 navigationFragmentKtx = "2.8.7"
-navigationSafeArgsGradlePlugin = "2.5.3"
+navigationSafeArgsGradlePlugin = "2.8.7"
 timber = "5.0.1"
 
 [libraries]
