@@ -28,6 +28,7 @@ class DetailFragment : Fragment() {
         binding.apply {
             ivShoeDetail.load(args.shoe.images.first())
             tvDetailShoeName.text = args.shoe.name
+            tvShoePrice.text = args.shoe.size.toString()
         }
     }
 
