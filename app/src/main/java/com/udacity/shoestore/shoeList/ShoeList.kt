@@ -6,17 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.udacity.shoestore.Adapter
-import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
-import com.udacity.shoestore.models.Shoe
+import androidx.activity.addCallback
+import androidx.lifecycle.LifecycleOwner
 
 /**
  * A simple [Fragment] subclass.
@@ -25,7 +21,7 @@ import com.udacity.shoestore.models.Shoe
  */
 class ShoeList : Fragment() {
 
-    private val viewModel: ShoeListViewModel by lazy{
+    private val viewModel: ShoeListViewModel by lazy {
         ViewModelProvider(this).get(ShoeListViewModel::class.java)
     }
 
@@ -45,15 +41,22 @@ class ShoeList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
         viewModel.shoes.observe(viewLifecycleOwner) {
-            binding.recyclerView.adapter = Adapter(it, onItemClicked = {shoe ->
+            binding.recyclerView.adapter = Adapter(it, onItemClicked = { shoe ->
                 Log.i("ShoeList", "Shoe: $shoe")
                 findNavController().navigate(
-                    ShoeListDirections.actionShoeListToDetailFragment2(shoe))
+                    ShoeListDirections.actionShoeListToDetailFragment2(shoe)
+                )
                 viewModel.displayShoeDetailsComplete()
 
             })
         }
         viewModel.addImage()
+
+        binding.fabFloatingButton.setOnClickListener {
+            findNavController().navigate(ShoeListDirections.actionShoeListToTitleFragment2())
+        }
+
+        activity?.onBackPressedDispatcher?.addCallback(this) {}
 
     }
 
