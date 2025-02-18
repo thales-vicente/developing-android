@@ -5,7 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.udacity.shoestore.databinding.FragmentTitleBinding
 
 /**
@@ -15,6 +20,9 @@ import com.udacity.shoestore.databinding.FragmentTitleBinding
  */
 class TitleFragment : Fragment() {
     private lateinit var binding: FragmentTitleBinding
+    private  val auth: FirebaseAuth by lazy { Firebase.auth }
+    private val navController: NavController by lazy { findNavController() }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -25,8 +33,44 @@ class TitleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonSignIn.setOnClickListener {
-            val action = TitleFragmentDirections.actionTitleFragment2ToWelcome()
-            view.findNavController().navigate(action)
+            validateData()
+
+        }
+        binding.buttonSignUp.setOnClickListener {
+            val action = TitleFragmentDirections.actionTitleFragment2ToSignUpFragment()
+            navController.navigate(action)
+
+        }
+    }
+    private fun validateData(){
+        val email = binding.editTextTextEmailAddress.text.toString()
+        val password = binding.editTextPassword.text.toString()
+
+        if(!email.isEmpty()) {
+            if (!password.isEmpty()) {
+
+                loginAccount(email, password)
+
+            }else {
+                binding.editTextPassword.error = "Please enter password"
+            }
+
+        }else{
+            binding.editTextTextEmailAddress.error = "Please enter email"
+        }
+    }
+
+    private fun loginAccount(email: String, password: String){
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+
+                val action = TitleFragmentDirections.actionTitleFragment2ToWelcome()
+                navController.navigate(action)
+
+            }else{
+                binding.editTextTextEmailAddress.error = "Email or password incorrect"
+                binding.editTextPassword.error = "Email or password incorrect"
+            }
         }
 
     }

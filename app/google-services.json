@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "646319851019",
+    "project_id": "shoe-store-2ec66",
+    "storage_bucket": "shoe-store-2ec66.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646319851019:android:0bfe25ec3a7b29febde90e",
+        "android_client_info": {
+          "package_name": "com.udacity.shoestore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeNoTpBgHbPe0_a3aL0Fl47MAeg5d-NhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_titleFragment2_to_welcome"
             app:destination="@id/welcome" />
+        <action
+            android:id="@+id/action_titleFragment2_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcome"
@@ -52,5 +55,14 @@
     <argument
         android:name="shoe"
         app:argType="com.udacity.shoestore.models.Shoe" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.udacity.shoestore.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_welcome"
+            app:destination="@id/welcome" />
     </fragment>
 </navigation>
