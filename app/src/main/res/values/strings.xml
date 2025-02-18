@@ -2,4 +2,14 @@
     <string name="app_name">ShoeStore</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="instruction_subtitle">All prices and products in this app are illustrative</string>
+    <string name="about_the_app">About the app:</string>
+    <string name="btn_lets_go">Let\'s go</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_sign_up">sign up</string>
+    <string name="btn_sign_in">sign in</string>
+    <string name="welcome_title">Welcome to the best shoe store</string>
+    <string name="welcome_subtitle">high quality shoes</string>
+    <string name="btn_about_the_app">About the app</string>
 </resources>
