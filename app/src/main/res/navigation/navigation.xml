@@ -62,6 +62,8 @@
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
+            app:popUpTo="@id/signUpFragment"
+            app:popUpToInclusive="true"
             android:id="@+id/action_signUpFragment_to_welcome"
             app:destination="@id/welcome" />
     </fragment>
