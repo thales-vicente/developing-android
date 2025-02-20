@@ -52,9 +52,6 @@
         android:name="com.udacity.shoestore.shoeList.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
-    <argument
-        android:name="shoe"
-        app:argType="com.udacity.shoestore.models.Shoe" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"

@@ -4,12 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import coil.load
+import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.FragmentShoeListBinding
 import com.udacity.shoestore.models.Shoe
+
 
 /**
  * A simple [Fragment] subclass.
@@ -18,9 +24,7 @@ import com.udacity.shoestore.models.Shoe
  */
 class ShoeList : Fragment() {
 
-    private val viewModel: ShoeListViewModel by lazy {
-        ViewModelProvider(this).get(ShoeListViewModel::class.java)
-    }
+    private val viewModel: ShoeListViewModel by activityViewModels()
 
     private lateinit var binding: FragmentShoeListBinding
     override fun onCreateView(
@@ -28,115 +32,38 @@ class ShoeList : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentShoeListBinding.inflate(inflater)
-
-
-
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.cleanNavigateObserver()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.shoes.observe(viewLifecycleOwner) {
+        viewModel.shoes.observe(viewLifecycleOwner, Observer { list->
+            val inflater = LayoutInflater.from(requireContext())
+            list.forEach { shoe->
+               val item = inflater.inflate(R.layout.item_shoe, null)
+                item.rootView.apply {
+                    item.findViewById<ImageView>(R.id.iv_shoe).apply {
+                        load(shoe.images)
+                    }
+                    item.findViewById<TextView>(R.id.tv_shoeName).apply {
+                        text = shoe.name
+                    }
+                    item.findViewById<TextView>(R.id.tv_shoeValue).apply {
+                        text = shoe.name
+                    }
+                }
+                binding.lnShoeList.addView(item)
+            }
+        })
 
-            bindingShoe1(it[0])
-            bindingShoe2(it[1])
-            bindingShoe3(it[2])
-            bindingShoe4(it[3])
-            bindingShoe5(it[4])
-            bindingShoe6(it[5])
-            bindingShoe7(it[6])
-            bindingShoe8(it[7])
-            bindingShoe9(it[8])
-            bindingShoe10(it[9])
-
+        binding.fabAddShoe.setOnClickListener {
+            val action = ShoeListDirections.actionShoeListToDetailFragment2()
+            findNavController().navigate(action)
         }
-        viewModel.addImage()
-
-//        binding.fabFloatingButton.setOnClickListener {
-//            findNavController().navigate(ShoeListDirections.actionShoeListToTitleFragment2())
-//        }
-
         activity?.onBackPressedDispatcher?.addCallback(this) {}
-
-    }
-
-    private fun bindingShoe1(shoe: Shoe) {
-        binding.iShoe1.apply {
-            ivShoe.load(shoe.images.first())
-            tvShoeName.text = shoe.name
-            tvShoeValue.text = shoe.size
-        }
-    }
-
-    private fun bindingShoe2(shoe: Shoe) {
-        binding.iShoe2.apply {
-            ivShoe.load(shoe.images.first())
-            tvShoeName.text = shoe.name
-            tvShoeValue.text = shoe.size
-        }
-    }
-
-    private fun bindingShoe3(shoe: Shoe) {
-        binding.iShoe3.apply {
-            ivShoe.load(shoe.images.first())
-            tvShoeName.text = shoe.name
-            tvShoeValue.text = shoe.size
-        }
-    }
-
-    private fun bindingShoe4(shoe: Shoe) {
-        binding.iShoe4.apply {
-            ivShoe.load(shoe.images.first())
-            tvShoeName.text = shoe.name
-            tvShoeValue.text = shoe.size
-        }
-    }
-
-    private fun bindingShoe5(shoe: Shoe) {
-        binding.iShoe5.apply {
-            ivShoe.load(shoe.images.first())
-            tvShoeName.text = shoe.name
-            tvShoeValue.text = shoe.size
-        }
-    }
-
-    private fun bindingShoe6(shoe: Shoe) {
-        binding.iShoe6.apply {
-            ivShoe.load(shoe.images.first())
-            tvShoeName.text = shoe.name
-            tvShoeValue.text = shoe.size
-        }
-    }
-
-    private fun bindingShoe7(shoe: Shoe) {
-        binding.iShoe7.apply {
-            ivShoe.load(shoe.images.first())
-            tvShoeName.text = shoe.name
-            tvShoeValue.text = shoe.size
-        }
-    }
-
-    private fun bindingShoe8(shoe: Shoe) {
-        binding.iShoe8.apply {
-            ivShoe.load(shoe.images.first())
-            tvShoeName.text = shoe.name
-            tvShoeValue.text = shoe.size
-        }
-    }
-
-    private fun bindingShoe9(shoe: Shoe) {
-        binding.iShoe9.apply {
-            ivShoe.load(shoe.images.first())
-            tvShoeName.text = shoe.name
-            tvShoeValue.text = shoe.size
-        }
-    }
-
-    private fun bindingShoe10(shoe: Shoe) {
-        binding.iShoe10.apply {
-            ivShoe.load(shoe.images.first())
-            tvShoeName.text = shoe.name
-            tvShoeValue.text = shoe.size
-        }
     }
 }

@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/black"
     tools:context=".shoeList.DetailFragment">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.udacity.shoestore.shoeList.ShoeListViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/black"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -45,40 +49,64 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <ImageView
-        android:id="@+id/iv_shoeDetail"
-        android:layout_width="0dp"
-        android:layout_height="266dp"
-        android:scaleType="centerCrop"
-        tools:src="@drawable/img_shoe_round"
+        <EditText
+        android:id="@+id/edit_shoeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_text_border"
+        android:padding="50dp"
+        android:backgroundTint="@color/white"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:hint="Choose a shoe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"/>
 
-        <TextView
-            android:id="@+id/tv_detailShoeName"
+        <EditText
+            android:id="@+id/edit_detailShoeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:hint="Choose name"
             android:layout_marginTop="16dp"
             android:text=""
             android:textColor="@color/white"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_shoeDetail"
+            app:layout_constraintTop_toBottomOf="@+id/edit_shoeImage"
             tools:text="Name"/>
 
-        <TextView
-            android:id="@+id/tv_shoePrice"
+        <EditText
+            android:id="@+id/edit_shoePrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:backgroundTint="@color/white"
+            android:textColorHint="@color/white"
+            android:hint="Choose price"
             android:text=""
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_detailShoeName"
+            app:layout_constraintTop_toBottomOf="@+id/edit_detailShoeName"
             tools:text="$100,00"/>
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button"
+            android:text="Save shoe"
+            android:textColor="@color/white"
+            android:ems="10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="50dp"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</layout>
